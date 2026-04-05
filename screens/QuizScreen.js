@@ -24,9 +24,9 @@ import ProgressBar from '../components/ProgressBar';
 import QuestionCard from '../components/QuestionCard';
 import OptionButton from '../components/OptionButton';
 import Timer from '../components/Timer';
-import questions from '../data/questions';
+import questionsData from '../data/questions';
 
-const QuizScreen = ({ onFinish }) => {
+const QuizScreen = ({ category, onFinish, onBack }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(null); // which option user tapped
   const [answered, setAnswered] = useState(false);
@@ -35,8 +35,9 @@ const QuizScreen = ({ onFinish }) => {
   // Fade animation for smooth question transitions
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
-  const currentQuestion = questions[currentIndex];
-  const total = questions.length;
+  const currentCategoryQuestions = questionsData[category] || questionsData['History'];
+  const currentQuestion = currentCategoryQuestions[currentIndex];
+  const total = currentCategoryQuestions.length;
 
   // Fade in when question changes
   useEffect(() => {
@@ -102,7 +103,7 @@ const QuizScreen = ({ onFinish }) => {
 
       {/* ── Header: back arrow + question counter ── */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
+        <TouchableOpacity style={styles.backButton} onPress={onBack}>
           <Text style={styles.backArrow}>←</Text>
         </TouchableOpacity>
         <Text style={styles.counterText}>

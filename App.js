@@ -14,7 +14,7 @@ import { StatusBar } from 'expo-status-bar';
 import HomeScreen from './screens/HomeScreen';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
-import questions from './data/questions';
+import questionsData from './data/questions';
 
 const SCREENS = {
   HOME: 'home',
@@ -27,11 +27,14 @@ export default function App() {
   const [screen, setScreen] = useState(SCREENS.HOME);
   // Final score passed from QuizScreen → ResultScreen
   const [finalScore, setFinalScore] = useState(0);
+  // Category selected
+  const [category, setCategory] = useState('History');
 
   /**
    * Called by HomeScreen's Start Quiz button.
    */
-  const handleStart = () => {
+  const handleStart = (selectedCategory) => {
+    setCategory(selectedCategory);
     setScreen(SCREENS.QUIZ);
   };
 
@@ -61,13 +64,17 @@ export default function App() {
       )}
 
       {screen === SCREENS.QUIZ && (
-        <QuizScreen onFinish={handleFinish} />
+        <QuizScreen 
+          category={category} 
+          onFinish={handleFinish} 
+          onBack={() => setScreen(SCREENS.HOME)}
+        />
       )}
 
       {screen === SCREENS.RESULT && (
         <ResultScreen
           score={finalScore}
-          total={questions.length}
+          total={questionsData[category]?.length || 10}
           onRestart={handleRestart}
         />
       )}
