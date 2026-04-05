@@ -11,20 +11,29 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
+import HomeScreen from './screens/HomeScreen';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
 import questions from './data/questions';
 
 const SCREENS = {
+  HOME: 'home',
   QUIZ: 'quiz',
   RESULT: 'result',
 };
 
 export default function App() {
   // Which screen is active
-  const [screen, setScreen] = useState(SCREENS.QUIZ);
+  const [screen, setScreen] = useState(SCREENS.HOME);
   // Final score passed from QuizScreen → ResultScreen
   const [finalScore, setFinalScore] = useState(0);
+
+  /**
+   * Called by HomeScreen's Start Quiz button.
+   */
+  const handleStart = () => {
+    setScreen(SCREENS.QUIZ);
+  };
 
   /**
    * Called by QuizScreen when all questions are answered.
@@ -46,6 +55,10 @@ export default function App() {
   return (
     <View style={styles.root}>
       <StatusBar style="light" />
+
+      {screen === SCREENS.HOME && (
+        <HomeScreen onStart={handleStart} />
+      )}
 
       {screen === SCREENS.QUIZ && (
         <QuizScreen onFinish={handleFinish} />
