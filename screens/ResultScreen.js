@@ -59,7 +59,7 @@ const ResultScreen = ({ score, total, onRestart }) => {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar barStyle="light-content" backgroundColor="#0d0d1a" />
+      <StatusBar barStyle="light-content" backgroundColor="#1E120D" />
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <Animated.View
@@ -136,7 +136,7 @@ const ResultScreen = ({ score, total, onRestart }) => {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#0d0d1a',
+    backgroundColor: '#1E120D',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   scrollContent: {

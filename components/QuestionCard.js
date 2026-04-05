@@ -16,22 +16,24 @@ const QuestionCard = ({ question }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#16162a',
-    borderRadius: 18,
-    padding: 22,
-    marginBottom: 24,
+    backgroundColor: 'transparent', // removed dark background to let parchment show
+    padding: 10,
+    marginBottom: 20,
   },
   questionText: {
-    color: '#ffffff',
-    fontSize: 20,
-    fontWeight: '700',
-    lineHeight: 28,
+    color: '#3A2415', // Dark ink color
+    fontSize: 22,
+    fontWeight: '800',
+    lineHeight: 30,
     marginBottom: 10,
+    textAlign: 'center',
   },
   subtitle: {
-    color: '#888899',
-    fontSize: 13,
-    fontWeight: '400',
+    color: '#5C3A21',
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
+    fontStyle: 'italic',
   },
 });
 

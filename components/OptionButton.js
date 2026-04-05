@@ -89,21 +89,21 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a2e',
+    backgroundColor: 'rgba(139, 90, 43, 0.1)', // sheer brownish tint
     borderRadius: 50,
     borderWidth: 1,
-    borderColor: '#2a2a3e',
+    borderColor: '#8b5a2b',
     paddingVertical: 16,
     paddingHorizontal: 20,
     marginBottom: 12,
   },
   correctButton: {
-    backgroundColor: '#1a4731',
+    backgroundColor: 'rgba(46, 125, 50, 0.15)',
     borderColor: '#2e7d52',
   },
   incorrectButton: {
-    backgroundColor: '#4a1414',
-    borderColor: '#8b3030',
+    backgroundColor: 'rgba(192, 57, 43, 0.15)',
+    borderColor: '#c0392b',
   },
 
   radio: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: '#555577',
+    borderColor: '#8b5a2b',
     marginRight: 14,
     alignItems: 'center',
     justifyContent: 'center',
@@ -137,17 +137,17 @@ const styles = StyleSheet.create({
 
   label: {
     flex: 1,
-    color: '#c0c0d0',
+    color: '#3A2415',
     fontSize: 15,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   correctLabel: {
-    color: '#5dca8a',
-    fontWeight: '600',
+    color: '#2e7d52',
+    fontWeight: '700',
   },
   incorrectLabel: {
-    color: '#e57373',
-    fontWeight: '600',
+    color: '#c0392b',
+    fontWeight: '700',
   },
 
   badgeCorrect: {

@@ -18,7 +18,9 @@ import {
   Animated,
   Platform,
   StatusBar,
+  ImageBackground,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import ProgressBar from '../components/ProgressBar';
 import QuestionCard from '../components/QuestionCard';
@@ -98,13 +100,18 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
   };
 
   return (
-    <SafeAreaView style={styles.safe}>
-      <StatusBar barStyle="light-content" backgroundColor="#0d0d1a" />
+    <ImageBackground 
+      source={require('../assets/QuizBackeground.png')} 
+      style={styles.backgroundStyle}
+      resizeMode="cover"
+    >
+      <SafeAreaView style={styles.safe}>
+        <StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true} />
 
       {/* ── Header: back arrow + question counter ── */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={onBack}>
-          <Text style={styles.backArrow}>←</Text>
+          <Ionicons name="arrow-back" size={28} color="#ffffff" />
         </TouchableOpacity>
         <Text style={styles.counterText}>
           {currentIndex + 1} / {total}
@@ -152,15 +159,21 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      )}
-    </SafeAreaView>
+        )}
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundStyle: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#000',
+  },
   safe: {
     flex: 1,
-    backgroundColor: '#0d0d1a',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   header: {
@@ -187,8 +200,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    flexGrow: 1,
+    justifyContent: 'center', // Centers content vertically in the parchment
+    paddingHorizontal: 35,    // Extra padding to fit within the parchment edges
+    paddingVertical: 10,
   },
   footer: {
     padding: 20,
