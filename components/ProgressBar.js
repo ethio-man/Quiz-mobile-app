@@ -1,8 +1,3 @@
-/**
- * ProgressBar Component
- * A linear animated progress bar at the top of the quiz screen.
- * Shows quiz progression as a filled purple bar.
- */
 import React, { useEffect, useRef } from 'react';
 import { View, Animated, StyleSheet } from 'react-native';
 
@@ -10,7 +5,6 @@ const ProgressBar = ({ current, total }) => {
   const animatedWidth = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // Animate bar fill whenever current question changes
     Animated.timing(animatedWidth, {
       toValue: (current / total) * 100,
       duration: 400,

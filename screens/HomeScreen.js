@@ -56,13 +56,13 @@ export default function HomeScreen({ onStart }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E120D', // Dark brown/black fallback background
+    backgroundColor: '#1E120D',
   },
   background: {
     flex: 1,
     width: '100%',
     height: '100%',
-    justifyContent: 'flex-end', // Aligns children to bottom
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   content: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
-    paddingBottom: 60, // Padding from the bottom of the screen
+    paddingBottom: 60,
   },
   spacer: {
     flex: 1,
@@ -103,10 +103,10 @@ const styles = StyleSheet.create({
     color: '#1E120D',
   },
   buttonContainer: {
-    backgroundColor: '#6A191B', // Dark red background of the button
+    backgroundColor: '#6A191B',
     borderWidth: 2,
-    borderColor: '#D4AF37', // Gold/yellow border
-    borderRadius: 35, // large border radius for pill shape
+    borderColor: '#D4AF37',
+    borderRadius: 35,
     paddingVertical: 15,
     paddingHorizontal: 40,
     alignItems: 'center',
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
-    elevation: 8, // for Android shadow
+    elevation: 8,
   },
   buttonTextPrimary: {
     color: '#FFFFFF',

@@ -1,12 +1,3 @@
-/**
- * ResultScreen
- * Displayed after all questions are completed.
- * Shows:
- * - Animated circular progress ring with score and percentage
- * - Performance feedback badge (Excellent / Strong Grasp / Almost There / Try Again)
- * - "Your Next Step" card with suggested improvement action
- * - Restart Quiz button
- */
 import React, { useEffect, useRef } from 'react';
 import {
   View,
@@ -22,11 +13,8 @@ import {
 
 import CircularProgress from '../components/CircularProgress';
 
-const TOTAL = 10; // match questions.js length
+const TOTAL = 10;
 
-/**
- * Returns feedback label + color based on percentage.
- */
 const getFeedback = (percentage) => {
   if (percentage >= 90) return { label: 'EXCELLENT!', color: '#5dca8a' };
   if (percentage >= 70) return { label: 'STRONG GRASP', color: '#7c5cfc' };
@@ -38,7 +26,6 @@ const ResultScreen = ({ score, total, onRestart }) => {
   const percentage = Math.round((score / total) * 100);
   const feedback = getFeedback(percentage);
 
-  // Slide-up entrance animation
   const slideAnim = useRef(new Animated.Value(60)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
 
@@ -68,26 +55,21 @@ const ResultScreen = ({ score, total, onRestart }) => {
             { transform: [{ translateY: slideAnim }], opacity: opacityAnim },
           ]}
         >
-          {/* ── Back Arrow ── */}
           <TouchableOpacity style={styles.backButton} onPress={onRestart}>
             <Text style={styles.backArrow}>←</Text>
           </TouchableOpacity>
 
-          {/* ── Circular progress ring ── */}
           <CircularProgress score={score} total={total} />
 
-          {/* ── Feedback badge ── */}
           <View style={[styles.feedbackBadge, { borderColor: feedback.color }]}>
             <Text style={[styles.feedbackText, { color: feedback.color }]}>{feedback.label}</Text>
           </View>
 
-          {/* ── "Your Next Step" Card ── */}
           <View style={styles.nextStepCard}>
             <View style={styles.nextStepHeader}>
               <Text style={styles.nextStepTag}>YOUR NEXT STEP</Text>
             </View>
             <View style={styles.nextStepBody}>
-              {/* Icon + title */}
               <View style={styles.nextStepTitleRow}>
                 <View style={styles.nextStepIcon}>
                   <Text style={styles.nextStepIconText}>⊙</Text>
@@ -95,7 +77,6 @@ const ResultScreen = ({ score, total, onRestart }) => {
                 <Text style={styles.nextStepTitle}>Practice More Questions</Text>
               </View>
 
-              {/* Chips */}
               <View style={styles.chipsRow}>
                 <View style={styles.chip}>
                   <Text style={styles.chipText}>5 min</Text>
@@ -108,7 +89,6 @@ const ResultScreen = ({ score, total, onRestart }) => {
                 </View>
               </View>
 
-              {/* Why this helps */}
               <View style={styles.whyBox}>
                 <Text style={styles.whyTitle}>⚡ Why this helps</Text>
                 <Text style={styles.whyText}>
@@ -116,14 +96,12 @@ const ResultScreen = ({ score, total, onRestart }) => {
                 </Text>
               </View>
 
-              {/* Restart button inside card */}
               <TouchableOpacity style={styles.restartButton} onPress={onRestart} activeOpacity={0.85}>
                 <Text style={styles.restartButtonText}>Start improvement quiz</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          {/* ── Back to quizzes text link ── */}
           <TouchableOpacity style={styles.backLink} onPress={onRestart}>
             <Text style={styles.backLinkText}>← Back to My Quizzes</Text>
           </TouchableOpacity>
@@ -160,7 +138,6 @@ const styles = StyleSheet.create({
     fontWeight: '300',
   },
 
-  // Feedback badge
   feedbackBadge: {
     borderWidth: 1.5,
     borderRadius: 20,
@@ -174,7 +151,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
 
-  // Next step card
   nextStepCard: {
     width: '100%',
     backgroundColor: '#13132a',
@@ -223,7 +199,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  // Chips
   chipsRow: {
     flexDirection: 'row',
     gap: 8,
@@ -241,7 +216,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
-  // Why this helps
   whyBox: {
     backgroundColor: '#1a1a3a',
     borderRadius: 10,
@@ -260,7 +234,6 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
 
-  // Restart button
   restartButton: {
     backgroundColor: '#7c5cfc',
     borderRadius: 50,
@@ -273,7 +246,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 
-  // Back link
   backLink: {
     marginTop: 8,
   },

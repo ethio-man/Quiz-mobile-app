@@ -1,8 +1,3 @@
-/**
- * CircularProgress Component
- * Renders the circular score ring on the Result screen using SVG.
- * Shows score/total in center with percentage below.
- */
 import React, { useEffect, useRef } from 'react';
 import { View, Text, Animated, StyleSheet } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
@@ -26,7 +21,6 @@ const CircularProgress = ({ score, total }) => {
     }).start();
   }, [percentage]);
 
-  // Calculate stroke-dashoffset from animated percentage
   const strokeDashoffset = animatedValue.interpolate({
     inputRange: [0, 100],
     outputRange: [CIRCUMFERENCE, 0],
@@ -35,7 +29,6 @@ const CircularProgress = ({ score, total }) => {
   return (
     <View style={styles.container}>
       <Svg width={SIZE} height={SIZE}>
-        {/* Background circle (dark track) */}
         <Circle
           cx={SIZE / 2}
           cy={SIZE / 2}
@@ -44,7 +37,6 @@ const CircularProgress = ({ score, total }) => {
           stroke="#2a2a3e"
           strokeWidth={STROKE_WIDTH}
         />
-        {/* Animated foreground arc */}
         <AnimatedCircle
           cx={SIZE / 2}
           cy={SIZE / 2}
@@ -59,7 +51,6 @@ const CircularProgress = ({ score, total }) => {
           origin={`${SIZE / 2}, ${SIZE / 2}`}
         />
       </Svg>
-      {/* Center text overlay */}
       <View style={styles.centerText}>
         <Text style={styles.scoreText}>
           {score} / {total}

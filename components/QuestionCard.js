@@ -1,7 +1,3 @@
-/**
- * QuestionCard Component
- * Displays the question text and subtitle instruction inside a dark rounded card.
- */
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -16,12 +12,12 @@ const QuestionCard = ({ question }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'transparent', // removed dark background to let parchment show
+    backgroundColor: 'transparent',
     padding: 10,
     marginBottom: 20,
   },
   questionText: {
-    color: '#3A2415', // Dark ink color
+    color: '#3A2415',
     fontSize: 22,
     fontWeight: '800',
     lineHeight: 30,

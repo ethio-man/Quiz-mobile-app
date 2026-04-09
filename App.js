@@ -1,12 +1,3 @@
-/**
- * App.js - Entry Point
- *
- * Handles top-level screen navigation between:
- * - QuizScreen (the main quiz)
- * - ResultScreen (score summary)
- *
- * Uses simple state-based routing (no external navigation library needed).
- */
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -23,33 +14,20 @@ const SCREENS = {
 };
 
 export default function App() {
-  // Which screen is active
   const [screen, setScreen] = useState(SCREENS.HOME);
-  // Final score passed from QuizScreen → ResultScreen
   const [finalScore, setFinalScore] = useState(0);
-  // Category selected
   const [category, setCategory] = useState('History');
 
-  /**
-   * Called by HomeScreen's Start Quiz button.
-   */
   const handleStart = (selectedCategory) => {
     setCategory(selectedCategory);
     setScreen(SCREENS.QUIZ);
   };
 
-  /**
-   * Called by QuizScreen when all questions are answered.
-   * Transitions to the ResultScreen with the achieved score.
-   */
   const handleFinish = (score) => {
     setFinalScore(score);
     setScreen(SCREENS.RESULT);
   };
 
-  /**
-   * Called by ResultScreen to restart the quiz from question 1.
-   */
   const handleRestart = () => {
     setFinalScore(0);
     setScreen(SCREENS.QUIZ);

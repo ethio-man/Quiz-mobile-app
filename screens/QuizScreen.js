@@ -1,13 +1,3 @@
-/**
- * QuizScreen
- * Main quiz screen handling:
- * - Displaying one question at a time
- * - Answer selection with immediate feedback
- * - Score tracking
- * - Per-question timer
- * - Progress bar and navigation header
- * - Fade-in animations on question transitions
- */
 import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
@@ -30,18 +20,16 @@ import questionsData from '../data/questions';
 
 const QuizScreen = ({ category, onFinish, onBack }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(null); // which option user tapped
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [answered, setAnswered] = useState(false);
   const [score, setScore] = useState(0);
 
-  // Fade animation for smooth question transitions
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const currentCategoryQuestions = questionsData[category] || questionsData['History'];
   const currentQuestion = currentCategoryQuestions[currentIndex];
   const total = currentCategoryQuestions.length;
 
-  // Fade in when question changes
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -50,12 +38,6 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
     }).start();
   }, [currentIndex]);
 
-  /**
-   * Handle option selection:
-   * - Lock all options
-   * - Show correct / incorrect highlighting
-   * - Update score
-   */
   const handleSelect = (index) => {
     if (answered) return;
     setSelectedIndex(index);
@@ -65,29 +47,18 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
     }
   };
 
-  /**
-   * Called when timer runs out before user selects an answer.
-   * Marks question as answered (no selection) so correct answer is revealed.
-   */
   const handleTimeUp = () => {
     if (!answered) {
       setAnswered(true);
-      // No score increment – time ran out
     }
   };
 
-  /**
-   * Navigate to next question with fade out/in transition.
-   * On last question, call onFinish to go to ResultScreen.
-   */
   const handleNext = () => {
     if (currentIndex + 1 >= total) {
-      // Pass final score to parent
       onFinish(score);
       return;
     }
 
-    // Fade out → reset → fade in next question
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 200,
@@ -108,7 +79,6 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
       <SafeAreaView style={styles.safe}>
         <StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true} />
 
-      {/* ── Header: back arrow + question counter ── */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={onBack}>
           <Ionicons name="arrow-back" size={28} color="#ffffff" />
@@ -116,7 +86,6 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
         <Text style={styles.counterText}>
           {currentIndex + 1} / {total}
         </Text>
-        {/* Timer on right side */}
         <Timer
           questionIndex={currentIndex}
           onTimeUp={handleTimeUp}
@@ -124,19 +93,14 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
         />
       </View>
 
-      {/* ── Purple progress bar ── */}
       <ProgressBar current={currentIndex + 1} total={total} />
 
-      {/* ── Animated question + options ── */}
       <Animated.ScrollView
         style={[styles.scroll, { opacity: fadeAnim }]}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Question card */}
         <QuestionCard question={currentQuestion.question} />
-
-        {/* Answer options */}
         {currentQuestion.options.map((option, idx) => (
           <OptionButton
             key={idx}
@@ -150,7 +114,6 @@ const QuizScreen = ({ category, onFinish, onBack }) => {
         ))}
       </Animated.ScrollView>
 
-      {/* ── Next Question button (shown only after answering) ── */}
       {answered && (
         <View style={styles.footer}>
           <TouchableOpacity style={styles.nextButton} onPress={handleNext} activeOpacity={0.85}>
@@ -201,8 +164,8 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    justifyContent: 'center', // Centers content vertically in the parchment
-    paddingHorizontal: 35,    // Extra padding to fit within the parchment edges
+    justifyContent: 'center',
+    paddingHorizontal: 35,
     paddingVertical: 10,
   },
   footer: {

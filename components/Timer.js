@@ -1,18 +1,12 @@
-/**
- * Timer Component
- * Countdown timer displayed per question.
- * When time runs out, automatically marks the question as answered with no selection.
- */
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const TIMER_SECONDS = 20; // seconds per question
+const TIMER_SECONDS = 20;
 
 const Timer = ({ questionIndex, onTimeUp, answered }) => {
   const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
   const intervalRef = useRef(null);
 
-  // Handle timer logic
   useEffect(() => {
     setTimeLeft(TIMER_SECONDS);
     clearInterval(intervalRef.current);
@@ -26,7 +20,6 @@ const Timer = ({ questionIndex, onTimeUp, answered }) => {
     return () => clearInterval(intervalRef.current);
   }, [questionIndex, answered]);
 
-  // Trigger onTimeUp when time runs out and hasn't been answered
   useEffect(() => {
     if (timeLeft === 0 && !answered) {
       clearInterval(intervalRef.current);

@@ -1,10 +1,3 @@
-/**
- * OptionButton Component
- * Renders a single answer option with correct/incorrect visual states.
- * - Default: dark pill with radio circle
- * - Correct: green background with checkmark
- * - Incorrect: red background with X mark
- */
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
@@ -12,11 +5,10 @@ const OptionButton = ({ option, index, onPress, selectedIndex, correctIndex, ans
   const isSelected = selectedIndex === index;
   const isCorrect = correctIndex === index;
 
-  // Determine button style based on answer state
   const getButtonStyle = () => {
-    if (!answered) return styles.button; // unanswered state
-    if (isCorrect) return [styles.button, styles.correctButton]; // always show correct
-    if (isSelected && !isCorrect) return [styles.button, styles.incorrectButton]; // wrong selection
+    if (!answered) return styles.button;
+    if (isCorrect) return [styles.button, styles.correctButton];
+    if (isSelected && !isCorrect) return [styles.button, styles.incorrectButton];
     return styles.button;
   };
 
@@ -34,7 +26,6 @@ const OptionButton = ({ option, index, onPress, selectedIndex, correctIndex, ans
     return styles.radio;
   };
 
-  // Icon shown inside radio circle after answering
   const renderRadioIcon = () => {
     if (!answered) return null;
     if (isCorrect) {
@@ -46,7 +37,6 @@ const OptionButton = ({ option, index, onPress, selectedIndex, correctIndex, ans
     return null;
   };
 
-  // Right-side icon badge
   const renderBadge = () => {
     if (!answered) return null;
     if (isCorrect) {
@@ -73,13 +63,10 @@ const OptionButton = ({ option, index, onPress, selectedIndex, correctIndex, ans
       activeOpacity={answered ? 1 : 0.7}
       disabled={answered}
     >
-      {/* Radio circle on the left */}
       <View style={getRadioStyle()}>{renderRadioIcon()}</View>
 
-      {/* Option text */}
       <Text style={getLabelStyle()}>{option}</Text>
 
-      {/* Badge on right */}
       {renderBadge()}
     </TouchableOpacity>
   );
@@ -89,7 +76,7 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(139, 90, 43, 0.1)', // sheer brownish tint
+    backgroundColor: 'rgba(139, 90, 43, 0.1)',
     borderRadius: 50,
     borderWidth: 1,
     borderColor: '#8b5a2b',
