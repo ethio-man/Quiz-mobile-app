@@ -1,9 +1,6 @@
-
 Name: Dagmawi Antehun
 ID: UGR/0116/16
-Section: 2 
-
-
+Section: 2
 
 # Quiz App
 
@@ -42,25 +39,30 @@ A simple and interactive mobile quiz application built with React Native and Exp
 ## Getting Started
 
 1. **Clone the repository** (if applicable) or navigate to the project directory:
+
    ```bash
    cd Dagmawi_Antehun_0116
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Start the Expo server**:
+
    ```bash
    npm start
    ```
+
    Or use:
+
    ```bash
    npx expo start
    ```
 
-4. **Run the App**: 
+4. **Run the App**:
    - Open the Expo Go app on your physical device and scan the QR code generated in your terminal or browser.
    - Or, run on an iOS Simulator or Android Emulator directly from the Expo CLI options.
 
@@ -69,4 +71,3 @@ A simple and interactive mobile quiz application built with React Native and Exp
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.dev/)
 - [React Native SVG](https://github.com/software-mansion/react-native-svg)
-
